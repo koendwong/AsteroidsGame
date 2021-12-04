@@ -34,8 +34,11 @@ public void draw() {
   for (int i = 0; i < test2.length; i++)
     test2[i].show();
 
-  for (int i = 0; i < block3.length; i++)
+  for (int i = 0; i < block3.length; i++) {
+    block3[i].turn();
+    block3[i].move();
     block3[i].show();
+  }
 
   if (wPress)
     test.accel(0.1);
@@ -52,11 +55,11 @@ public void draw() {
 
   stroke(0, 255, 0);
   fill(0);
-  rect(30, 30, 180, 65);
+  rect(30, 30, 250, 65);
 
   fill(0, 255, 0);
   textAlign(LEFT);
-  text((float)(test.getDirect()*180) + "°", 40, 60);
+  text((test.getDirect()*180) + "°", 40, 60);
   text("lazySteer = " + lazySteer, 40, 80);
 
   if (hyperspaceCooldown > 0)
