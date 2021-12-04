@@ -11,9 +11,26 @@ class Spaceship extends Floater {
     direct = 0;
     vX = 0;
     vY = 0;
-    strokeC = color(255);
+    strokeW = 2;
+    strokeC = color(0, 255, 0);
     fillC = color(0);
-}
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  
+  public void move() {
+    pX += vX;
+    pY += vY;
+    
+    if (pX > 1030)
+      pX = -30;
+    else if (pX < -30)
+      pX = 1030;
+    if (pY > 1030)
+      pY = -30;
+    else if (pY < -30)
+      pY = 1030;
+  }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -27,12 +44,10 @@ class Spaceship extends Floater {
   
   ///////////////////////////////////////////////////////////////////////////////////////////////
   
-  public double Getdirect() {
-    if (-direct >= 2)
-      direct = 0;
-    else if (-direct < 0)
-      direct -= 2;
-    return -direct;
+  public double getDirect() {
+    if (direct <= 0)
+      direct += 2;
+    return 2-direct;
   }
   
   public void mouseDirect() {
@@ -45,4 +60,5 @@ class Spaceship extends Floater {
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////
+  
 }
