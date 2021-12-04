@@ -2,7 +2,7 @@ class Floater {
   
   ///////////////////////////////////////////////////////////////////////////////////////////////
   
-  protected int corners;
+  protected int corners, strokeW;
   protected int[] xCorners, yCorners;
   protected double pX, pY, vX, vY, direct, aimX, aimY;
   protected color strokeC, fillC;
@@ -39,6 +39,7 @@ class Floater {
   ///////////////////////////////////////////////////////////////////////////////////////////////
   
   public void show() {
+    strokeWeight(strokeW);
     stroke(strokeC);
     fill(fillC);
     translate((float)pX, (float)pY);
@@ -56,4 +57,5 @@ class Floater {
   }
   
   ///////////////////////////////////////////////////////////////////////////////////////////////
+  
 }
