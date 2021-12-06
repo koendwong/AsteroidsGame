@@ -1,45 +1,52 @@
-Spaceship test = new Spaceship();
-Star [] test2 = new Star[2000];
-Asteroid [] block3 = new Asteroid[50];
+Spaceship test;
+Star [] test2 = new Star[1500];
+ArrayList <Asteroid> block3 = new ArrayList <Asteroid> ();
 
 public boolean wPress, aPress, dPress, lazySteer;
-public int hyperspaceEffect, hyperspaceCooldown;
+public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
   //fullScreen();
-  size(1000, 1000);
-  textSize(20);
+  size(1500, 1000);
+  textSize(20);;
 
   wPress = false;
   aPress = false;
   dPress = false;
   lazySteer = false;
+  AsteroidAmount = 50;
   hyperspaceEffect = 0;
   hyperspaceCooldown = 0; // COUNTED IN FRAMES (60 FPS)
+  
+  test = new Spaceship();
 
   for (int i = 0; i < test2.length; i++)
     test2[i] = new Star();
 
-  for (int i = 0; i < block3.length; i++)
-    block3[i] = new Asteroid();
+  for (int i = 0; i < AsteroidAmount; i++)
+    block3.add(i, new Asteroid());
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////// draw
 
 public void draw() {
   background(0);
-
+  
+  ////////////////////////////////////////// Star
   for (int i = 0; i < test2.length; i++)
     test2[i].show();
-
-  for (int i = 0; i < block3.length; i++) {
-    block3[i].turn();
-    block3[i].move();
-    block3[i].show();
+  
+  ////////////////////////////////////////// Asteroid
+  for (int i = 0; i < AsteroidAmount; i++) {
+    block3.get(i).turn();
+    block3.get(i).move();
+    block3.get(i).show();
+    //block3.get(i).getVelocity();
   }
-
+  
+  ////////////////////////////////////////// Spaceship
   if (wPress)
     test.accel(0.1);
   if (lazySteer) {
@@ -52,9 +59,11 @@ public void draw() {
   }
   test.move();
   test.show();
-
+  //test.getVelocity();
+  
+  ////////////////////////////////////////// the rest
   stroke(0, 255, 0);
-  fill(0);
+  fill(0, 100);
   rect(30, 30, 250, 65);
 
   fill(0, 255, 0);
@@ -68,10 +77,10 @@ public void draw() {
     hyperspaceEffect-=10;
   noStroke();
   fill(0, hyperspaceEffect);
-  rect(0, 0, 1000, 1000);
+  rect(0, 0, width, height);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////// keyPressed
 
 public void keyPressed() {
   if (key == 'w' || key == 'W')
@@ -88,8 +97,8 @@ public void keyPressed() {
       test.hyperspace();
       for (int i = 0; i < test2.length; i++)
         test2[i].hyperspace();
-      for (int i = 0; i < block3.length; i++)
-        block3[i].hyperspace();
+      for (int i = 0; i < AsteroidAmount; i++)
+        block3.get(i).hyperspace();
     }
   }
 
