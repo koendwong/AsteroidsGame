@@ -1,13 +1,13 @@
 class Spaceship extends Floater {
   
-  ///////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////// initialize
   
   public Spaceship() {
     corners = 14;
-    xCorners = new int[] {26, 24, 12, -12, -16, -14, -20, -21, -20, -14, -16, -12, 12, 24}; // DOUBLE SCALED RIGHT NOW
-    yCorners = new int[] {0,  -2, -4, -12, -10,  -4,  -2,   0,   2,   4,  10,  12,  4,  2};
-    pX = 500;
-    pY = 500;
+    xCorners = new double[] {26, 24, 12, -12, -16, -14, -20, -21, -20, -14, -16, -12, 12, 24};
+    yCorners = new double[] {0,  -2, -4, -12, -10,  -4,  -2,   0,   2,   4,  10,  12,  4,  2};
+    pX = width/2;
+    pY = height/2;
     direct = 0;
     vX = 0;
     vY = 0;
@@ -16,39 +16,17 @@ class Spaceship extends Floater {
     fillC = color(0);
   }
   
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  
-  public void move() {
-    pX += vX;
-    pY += vY;
-    
-    if (pX > 1030)
-      pX = -30;
-    else if (pX < -30)
-      pX = 1030;
-    if (pY > 1030)
-      pY = -30;
-    else if (pY < -30)
-      pY = 1030;
-  }
-  
-  ///////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////// hyperspace
   
   public void hyperspace() {
     vX = 0;
     vY = 0;
-    pX = (int)(Math.random()*801)+100;
-    pY = (int)(Math.random()*801)+100;
+    pX = (int)(Math.random()*(width+1-100))+50;
+    pY = (int)(Math.random()*(height+1-100))+50;
     direct = Math.random()*2;
   }
   
-  ///////////////////////////////////////////////////////////////////////////////////////////////
-  
-  public double getDirect() {
-    if (direct <= 0)
-      direct += 2;
-    return 2-direct;
-  }
+  /////////////////////////////////////////////////////////////////////////////////////////////// direction
   
   public void mouseDirect() {
     aimX = mouseX - pX;
@@ -59,6 +37,19 @@ class Spaceship extends Floater {
       direct = (PI+atan((float)aimY/(float)aimX))/PI;
   }
   
-  ///////////////////////////////////////////////////////////////////////////////////////////////
+  public double getDirect() {
+    if (direct <= 0)
+      direct += 2;
+    return 2-direct;
+  }
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////// getVelocity
+  
+  public void getVelocity() {
+    stroke(255, 0, 0);
+    line((float)pX, (float)pY, (float)pX+(float)vX*60, (float)pY+(float)vY*60);
+  }
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////// end Spaceship
   
 }
