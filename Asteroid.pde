@@ -11,9 +11,9 @@ class Asteroid extends Floater {
     xCorners = new double[corners];
     yCorners = new double[corners];
     for (int i = 0; i < corners; i++) {
-      vertexRadius = (Math.random()*20)+10;
-      xCorners[i] = vertexRadius*cos(i*(2*PI/corners));
-      yCorners[i] = vertexRadius*sin(i*(2*PI/corners));
+      vertexRadius = (Math.random()*15)+15;
+      xCorners[i] = vertexRadius*Math.cos(i*(2*PI/corners));
+      yCorners[i] = vertexRadius*Math.sin(i*(2*PI/corners));
     }
     pX = (int)(Math.random()*(width+1));
     pY = (int)(Math.random()*(height+1));
@@ -32,18 +32,18 @@ class Asteroid extends Floater {
     direct += AsteroidRotate;
   }
   
-  /////////////////////////////////////////////////////////////////////////////////////////////// hyperspace
-  
-  public void hyperspace() {
-    pX = (int)(Math.random()*(width+1));
-    pY = (int)(Math.random()*(height+1));
-  }
-  
   /////////////////////////////////////////////////////////////////////////////////////////////// getVelocity
   
   public void getVelocity() {
     stroke(255, 0, 0);
     line((float)pX, (float)pY, (float)pX+(float)vX*60, (float)pY+(float)vY*60);
+  }
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////// hyperspace
+  
+  public void hyperspace() {
+    pX = (int)(Math.random()*(width+1));
+    pY = (int)(Math.random()*(height+1));
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////////// end Asteroid
