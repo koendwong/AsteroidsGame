@@ -4,10 +4,10 @@ class Floater {
 
   protected int corners, strokeW;
   protected double[] xCorners, yCorners;
-  protected double pX, pY, vX, vY, accelerate, direct, aimX, aimY;
+  protected double pX, pY, vX, vY, direct, aimX, aimY;
   protected color strokeC, fillC;
 
-  /////////////////////////////////////////////////////////////////////////////////////////////// initialize
+  /////////////////////////////////////////////////////////////////////////////////////////////// move
 
   public void move() {
     pX += vX;
@@ -22,11 +22,20 @@ class Floater {
     else if (pY < -50)
       pY = height+50;
   }
-
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////// getP
+  
+  public float getPX() {
+    return (float)pX;
+  }
+  
+  public float getPY() {
+    return (float)pY;
+  }
+  
   /////////////////////////////////////////////////////////////////////////////////////////////// accel
 
   public void accel(double A) {
-    accelerate = A;
     vX += A * Math.cos(direct*PI);
     vY += A * Math.sin(direct*PI);
   }
@@ -36,7 +45,7 @@ class Floater {
   public void turn(double R) {
     direct += R;
   }
-
+  
   /////////////////////////////////////////////////////////////////////////////////////////////// show
 
   public void show() {
