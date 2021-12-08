@@ -1,24 +1,23 @@
 Spaceship test;
-Star [] test2 = new Star[1500];
+Star [] test2 = new Star[1000];
 ArrayList <Asteroid> block3 = new ArrayList <Asteroid> ();
 
-public boolean wPress, aPress, dPress, lazySteer;
+public boolean wPress, aPress, dPress, qPress, shiftPress, lazySteer;
 public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
-  //fullScreen();
   size(1500, 1000);
-  textSize(20);;
-
+  
+  AsteroidAmount = 40;
+  
   wPress = false;
   aPress = false;
   dPress = false;
   lazySteer = false;
-  AsteroidAmount = 50;
   hyperspaceEffect = 0;
-  hyperspaceCooldown = 0; // COUNTED IN FRAMES (60 FPS)
+  hyperspaceCooldown = 0;
   
   test = new Spaceship();
 
@@ -39,38 +38,40 @@ public void draw() {
     test2[i].show();
   
   ////////////////////////////////////////// Asteroid
-  for (int i = 0; i < AsteroidAmount; i++) {
+  for (int i = 0; i < block3.size(); i++) {
     block3.get(i).turn();
     block3.get(i).move();
     block3.get(i).show();
-    //block3.get(i).getVelocity();
+    
+    if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40)
+      block3.remove(i);
   }
   
   ////////////////////////////////////////// Spaceship
   if (wPress)
-    test.accel(0.1);
+    test.accel(0.05);
   if (lazySteer) {
     test.mouseDirect();
   } else {
-    if (aPress)
-      test.turn(-0.01);
-    if (dPress)
-      test.turn(0.01);
+    if (aPress) {
+      test.accelTurn(-0.0003);
+    }
+    if (dPress) {
+      test.accelTurn(0.0003);
+    }
+    if (shiftPress) {
+      if (test.getAng() > 0) 
+        test.accelTurn(-0.0003);
+      else if (test.getAng() < 0)
+        test.accelTurn(0.0003);
+    }
   }
+  test.turn();
   test.move();
   test.show();
-  //test.getVelocity();
+  test.displayCompass();
   
-  ////////////////////////////////////////// the rest
-  stroke(0, 255, 0);
-  fill(0, 100);
-  rect(30, 30, 250, 65);
-
-  fill(0, 255, 0);
-  textAlign(LEFT);
-  text((test.getDirect()*180) + "°", 40, 60);
-  text("lazySteer = " + lazySteer, 40, 80);
-
+  ////////////////////////////////////////// hyperspace effects
   if (hyperspaceCooldown > 0)
     hyperspaceCooldown--;
   if (hyperspaceEffect > 0)
@@ -97,11 +98,15 @@ public void keyPressed() {
       test.hyperspace();
       for (int i = 0; i < test2.length; i++)
         test2[i].hyperspace();
-      for (int i = 0; i < AsteroidAmount; i++)
+      for (int i = 0; i < block3.size(); i++)
         block3.get(i).hyperspace();
     }
   }
-
+  
+  if (keyCode == SHIFT) {
+    shiftPress = true;
+  }
+  
   if (key == 'r' || key == 'R')
     lazySteer = true;
 }
@@ -113,7 +118,10 @@ public void keyReleased() {
     aPress = false;
   if (key == 'd' || key == 'D')
     dPress = false;
-
+  
+  if (keyCode == SHIFT)
+    shiftPress = false;  
+  
   if (key == 'r' || key == 'R')
     lazySteer = false;
 }
