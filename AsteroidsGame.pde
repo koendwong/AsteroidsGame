@@ -54,16 +54,16 @@ public void draw() {
     test.mouseDirect();
   } else {
     if (aPress) {
-      test.accelTurn(-0.0003);
+      test.accelTurn(-0.0005);
     }
     if (dPress) {
-      test.accelTurn(0.0003);
+      test.accelTurn(0.0005);
     }
     if (shiftPress) {
       if (test.getAng() > 0) 
-        test.accelTurn(-0.0003);
+        test.accelTurn(-0.0005);
       else if (test.getAng() < 0)
-        test.accelTurn(0.0003);
+        test.accelTurn(0.0005);
     }
   }
   test.turn();
