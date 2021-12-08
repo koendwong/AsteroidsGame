@@ -66,7 +66,7 @@ public void draw() {
         test.accelTurn(0.0005);
     }
   }
-  test.turn();
+  //test.turn();
   test.move();
   test.show();
   test.displayCompass();
