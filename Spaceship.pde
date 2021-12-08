@@ -140,7 +140,7 @@ class Spaceship extends Floater {
   public void hyperspace() {
     vX = 0;
     vY = 0;
-    vAng = 0;
+    vAng = 0.1;
     pX = (int)(Math.random()*(width+1-100))+50;
     pY = (int)(Math.random()*(height+1-100))+50;
     direct = Math.random()*2;
