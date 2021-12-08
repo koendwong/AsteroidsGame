@@ -14,6 +14,7 @@ class Spaceship extends Floater {
     pX = width/2;
     pY = height/2;
     direct = 0;
+    vAng = 0;
     vX = 0;
     vY = 0;
     strokeW = 2;
