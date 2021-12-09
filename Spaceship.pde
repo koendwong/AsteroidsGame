@@ -31,8 +31,8 @@ class Spaceship extends Floater {
   
   /////////////////////////////////////////////////////////////////////////////////////////////// turn
   
-  public void accelTurn(double R) {
-    vAng += R;
+  public void accelTurn(double Roo) {
+    vAng += Roo;
   }
 
   public void turn() {
