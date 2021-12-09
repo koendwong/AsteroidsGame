@@ -8,8 +8,8 @@ public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 ///////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
-  //fullScreen();
-  size(1500, 900);
+  fullScreen();
+  //size(1500, 900);
   
   AsteroidAmount = 40;
   wPress = false;
@@ -55,10 +55,12 @@ public void draw() {
     if (dPress)
       test.accelTurn(0.0002);
     if (shiftPress) {
-      if (test.getAng() >= 0.0002) 
+      if (test.getAng() > 0) 
         test.accelTurn(-0.0002);
-      else if (test.getAng() <= -0.0002)
+      else if (test.getAng() < 0)
         test.accelTurn(0.0002);
+      else
+        test.setAng(0);
     }
   }
   test.turn();
