@@ -28,7 +28,6 @@ class Floater {
   public float getPX() {
     return (float)pX;
   }
-  
   public float getPY() {
     return (float)pY;
   }
