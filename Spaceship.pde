@@ -31,10 +31,9 @@ class Spaceship extends Floater {
   
   /////////////////////////////////////////////////////////////////////////////////////////////// turn
   
-  public void accelTurn(double Roo) {
-    vAng += Roo;
+  public void accelTurn(double R) {
+    vAng += R;
   }
-
   public void turn() {
     direct += vAng;
   }
@@ -50,9 +49,9 @@ class Spaceship extends Floater {
     aimX = mouseX - pX;
     aimY = mouseY - pY;
     if (aimX >= 0)
-      direct = (Math.atan((float)aimY/(float)aimX))/PI;
+      direct = (Math.atan(aimY/aimX))/PI;
     else
-      direct = (PI+Math.atan((float)aimY/(float)aimX))/PI;
+      direct = (PI+Math.atan(aimY/aimX))/PI;
   }
   
   public double getDirect() {
@@ -95,10 +94,10 @@ class Spaceship extends Floater {
     fill(0, 128, 255, 50);
     noStroke();
     if (vAng > 0) {
-      arc(0, 0, 200, 200, 0, (float)vAng*60*PI, PIE);
+      arc(0, 0, 200, 200, 0, (float)vAng*60*PI);
     }
     else if (vAng < 0) {
-      arc(0, 0, 200, 200, (float)vAng*60*PI, 0, PIE);
+      arc(0, 0, 200, 200, (float)vAng*60*PI, 0);
     }
     if (lazySteer)
       stroke(0, 255, 255, 150);
