@@ -38,6 +38,9 @@ class Spaceship extends Floater {
     direct += vAng;
   }
   
+  public void setAng(double A) {
+    vAng = A;
+  }
   public double getAng() {
     return vAng;
   }
