@@ -14,7 +14,6 @@ class Spaceship extends Floater {
     pX = width/2;
     pY = height/2;
     direct = 0;
-    vAng = 0;
     vX = 0;
     vY = 0;
     strokeW = 2;
@@ -26,8 +25,8 @@ class Spaceship extends Floater {
   
   /////////////////////////////////////////////////////////////////////////////////////////////// getV
   
-  public float getV() {
-    return (float)(Math.sqrt((vX*vX)+(vY*vY))*60);
+  public double getV() {
+    return Math.sqrt((vX*vX)+(vY*vY))*60;
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////////// turn
@@ -56,12 +55,12 @@ class Spaceship extends Floater {
       direct = (PI+Math.atan((float)aimY/(float)aimX))/PI;
   }
   
-  public float getDirect() {
+  public double getDirect() {
     if (direct <= 0)
       direct += 2;
     else if (direct > 2)
       direct -= 2;
-    return 2-(float)direct;
+    return 2-direct;
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////////// displayCompass
@@ -79,7 +78,7 @@ class Spaceship extends Floater {
     if (vVectL >= 100)
       vVectL = 100;
     
-    translate((float)pCompassX, (float)pCompassY);
+    translate((float)pCompassX, (float)pCompassY); //////////
     
     noStroke();
     fill(0, 150);
@@ -113,26 +112,28 @@ class Spaceship extends Floater {
     fill(255, 0);
     ellipse(0, 0, 200, 200);
     
-    translate(-(float)pCompassX, -(float)pCompassY);
+    translate(-(float)pCompassX, -(float)pCompassY); //////////
     
     ////////////////////////////////////////// display number data
     stroke(strokeC);
     fill(0, 200);
-    rect(50, 250, 140, 80, 10);
+    rect(25, 245, 190, 80, 10);
   
     textAlign(LEFT);
-    textSize(20);
+    textSize(15);
     fill(255, 0, 255);
-    text(getV() + "", 60, 305);
+    text(getV() + "", 35, 300);
     textSize(10);
-    text("pixels per second", 60, 315);
+    text("pixels per second", 35, 310);
   
     if (lazySteer)
       fill(0, 255, 255);
     else
       fill(0, 128, 255);
-    textSize(20);
-    text((getDirect()*180) + "°", 60, 280);
+    textSize(15);
+    text((getDirect()*180) + "", 35, 270);
+    textSize(10);
+    text("degrees", 35, 280);
   }
   
   /////////////////////////////////////////////////////////////////////////////////////////////// hyperspace
