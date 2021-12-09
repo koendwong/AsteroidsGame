@@ -9,7 +9,7 @@ public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 
 public void setup() {
   //fullScreen();
-  size(1500, 1000);
+  size(1500, 900);
   
   AsteroidAmount = 40;
   wPress = false;
