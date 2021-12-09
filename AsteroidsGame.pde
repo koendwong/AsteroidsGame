@@ -8,8 +8,8 @@ public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 ///////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
-  fullScreen();
-  //size(1500, 900);
+  //fullScreen();
+  size(1500, 900);
   
   AsteroidAmount = 40;
   wPress = false;
