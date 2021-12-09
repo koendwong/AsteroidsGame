@@ -8,10 +8,10 @@ public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 ///////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
+  //fullScreen();
   size(1500, 1000);
   
   AsteroidAmount = 40;
-  
   wPress = false;
   aPress = false;
   dPress = false;
@@ -51,16 +51,16 @@ public void draw() {
     test.mouseDirect();
   } else {
     if (aPress) {
-      test.accelTurn(-0);
+      test.accelTurn(-0.0004);
     }
     if (dPress) {
-      test.accelTurn(0);
+      test.accelTurn(0.0004);
     }
     if (shiftPress) {
       if (test.getAng() > 0) 
-        test.accelTurn(-0.0005);
+        test.accelTurn(-0.0004);
       else if (test.getAng() < 0)
-        test.accelTurn(0.0005);
+        test.accelTurn(0.0004);
     }
   }
   test.turn();
@@ -87,6 +87,7 @@ public void keyPressed() {
     aPress = true;
   if (key == 'd' || key == 'D')
     dPress = true;
+
   if (key == 'h' || key == 'H') {
     if (hyperspaceCooldown == 0) {
       hyperspaceCooldown = 30;
@@ -97,9 +98,12 @@ public void keyPressed() {
       for (int i = 0; i < block3.size(); i++)
         block3.get(i).hyperspace();
     }
-  }
-  if (keyCode == SHIFT)
+  } 
+  if (keyCode == SHIFT) {
+    //aPress = false;
+    //dPress = false;
     shiftPress = true;
+  }
   if (key == 'r' || key == 'R')
     lazySteer = true;
 }
@@ -112,7 +116,7 @@ public void keyReleased() {
   if (key == 'd' || key == 'D')
     dPress = false;
   if (keyCode == SHIFT)
-    shiftPress = false;
+    shiftPress = false;  
   if (key == 'r' || key == 'R')
     lazySteer = false;
 }
