@@ -50,12 +50,10 @@ public void draw() {
   if (lazySteer) {
     test.mouseDirect();
   } else {
-    if (aPress) {
+    if (aPress)
       test.accelTurn(-0.0004);
-    }
-    if (dPress) {
+    if (dPress)
       test.accelTurn(0.0004);
-    }
     if (shiftPress) {
       if (test.getAng() > 0) 
         test.accelTurn(-0.0004);
@@ -100,8 +98,6 @@ public void keyPressed() {
     }
   } 
   if (keyCode == SHIFT) {
-    //aPress = false;
-    //dPress = false;
     shiftPress = true;
   }
   if (key == 'r' || key == 'R')
