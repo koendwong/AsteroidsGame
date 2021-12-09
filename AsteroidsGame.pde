@@ -37,11 +37,11 @@ public void draw() {
   
   ////////////////////////////////////////// Asteroid
   for (int i = 0; i < block3.size(); i++) {
-    if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40)
-      block3.remove(i);
     block3.get(i).turn();
     block3.get(i).move();
     block3.get(i).show();
+    if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40)
+      block3.remove(i);
   }
   
   ////////////////////////////////////////// Spaceship
@@ -51,14 +51,14 @@ public void draw() {
     test.mouseDirect();
   } else {
     if (aPress)
-      test.accelTurn(-0.0004);
+      test.accelTurn(-0.0002);
     if (dPress)
-      test.accelTurn(0.0004);
+      test.accelTurn(0.0002);
     if (shiftPress) {
-      if (test.getAng() > 0) 
-        test.accelTurn(-0.0004);
-      else if (test.getAng() < 0)
-        test.accelTurn(0.0004);
+      if (test.getAng() >= 0.0002) 
+        test.accelTurn(-0.0002);
+      else if (test.getAng() <= -0.0002)
+        test.accelTurn(0.0002);
     }
   }
   test.turn();
