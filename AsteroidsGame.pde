@@ -54,9 +54,9 @@ public void draw() {
     if (dPress)
       test.accelTurn(0.0002);
     if (shiftPress) {
-      if (test.getAng() >= 0.0002) 
+      if (test.getAng() > 0.0002) 
         test.accelTurn(-0.0002);
-      else if (test.getAng() <= 0.0002)
+      else if (test.getAng() < -0.0002)
         test.accelTurn(0.0002);
       else
         test.setAng(0);
