@@ -65,6 +65,7 @@ public void draw() {
   test.turn();
   test.move();
   test.show();
+  test.Thruster();
   test.displayCompass();
   
   ////////////////////////////////////////// hyperspace effects
