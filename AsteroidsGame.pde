@@ -2,7 +2,7 @@ Spaceship test;
 Star [] test2 = new Star[1000];
 ArrayList <Asteroid> block3 = new ArrayList <Asteroid> ();
 
-public boolean wPress, aPress, dPress, qPress, shiftPress, lazySteer, deathSpaceship;
+public boolean wPress, aPress, dPress, shiftPress, lazySteer, deathSpaceship;
 public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 public PImage skull;
 
@@ -42,7 +42,6 @@ public void draw() {
     block3.get(i).turn();
     block3.get(i).move();
     block3.get(i).show();
-    //block3.get(i).getVelocity();
     if (!deathSpaceship) {
       if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40) {
         test.healthMinus();
@@ -52,31 +51,33 @@ public void draw() {
   }
   
   //////////////////////////////////////////////////////////////////////////////////// Spaceship
-  if (wPress) {
-    test.accel(0.05);
-  }
-  if (lazySteer) {
-    test.mouseDirect();
-  } else {
-    if (aPress)
-      test.accelTurn(-0.0002);
-    if (dPress)
-      test.accelTurn(0.0002);
-    if (shiftPress) {
-      if (test.getAng() > 0.0002) 
-        test.accelTurn(-0.0002);
-      else if (test.getAng() < -0.0002)
-        test.accelTurn(0.0002);
-      else
-        test.setAng(0);
-    }
-  }
   test.turn();
   test.move();
-  if (!deathSpaceship)
+  if (!deathSpaceship) {
+    if (wPress) {
+      test.accel(0.05);
+    }
+    if (lazySteer) {
+      test.mouseDirect();
+    } else {
+      if (aPress)
+        test.accelTurn(-0.0002);
+      if (dPress)
+        test.accelTurn(0.0002);
+      if (shiftPress) {
+        if (test.getAng() > 0.0002) 
+          test.accelTurn(-0.0002);
+        else if (test.getAng() < -0.0002)
+          test.accelTurn(0.0002);
+        else
+          test.setAng(0);
+      }
+    }
     test.show();
-  else
+  }
+  else {
     test.explosion();
+  }
   test.displayCompass();
   
   //////////////////////////////////////////////////////////////////////////////////// hyperspace effects
@@ -99,8 +100,8 @@ public void keyPressed() {
   if (key == 'd' || key == 'D')
     dPress = true;
 
-  if (key == 'h' || key == 'H') {
-    if (hyperspaceCooldown == 0) {
+  if (key == 'q' || key == 'Q') {
+    if (hyperspaceCooldown == 0 && !deathSpaceship) {
       hyperspaceCooldown = 30;
       hyperspaceEffect = 260;
       test.hyperspace();
