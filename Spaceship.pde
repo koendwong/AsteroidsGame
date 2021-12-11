@@ -216,8 +216,6 @@ class Spaceship extends Floater {
     }
     else
       healthG = 0;
-    
-    System.out.println(healthPoints + ", " + healthR + ", " + healthG); //////////////////////////////////////////////SYSTEM OUT PRINT
   }
   
   public void explosion() {
