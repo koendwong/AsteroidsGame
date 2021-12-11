@@ -6,6 +6,7 @@ class Spaceship extends Floater {
   protected double[] xThrusterW, yThrusterW;
   protected int pCompassX, pCompassY;
   protected float thrusterOpacity, healthPoints, healthR, healthG;
+  protected Explosion[] Gone;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// initialize
 
@@ -30,6 +31,22 @@ class Spaceship extends Floater {
     fillC = color(0);
     pCompassX = 120;
     pCompassY = 120;
+    Gone = new Explosion[] {
+    new Explosion(26,    0),
+    new Explosion(24,   -2), new Explosion(21, -2.5), new Explosion(18, -3), new Explosion(15, -3.5),
+    new Explosion(12,   -4), new Explosion(9, -5), new Explosion(6, -6), new Explosion(3, -7), new Explosion(0, -8), new Explosion(-3, -9), new Explosion(-6, -10), new Explosion(-9, -11),
+    new Explosion(-12, -12), new Explosion(-14, -11),
+    new Explosion(-16, -10), new Explosion(-15, -7),
+    new Explosion(-14,  -4), new Explosion(-17, -3),
+    new Explosion(-20,  -2),
+    new Explosion(-21,   0),
+    new Explosion(-20,   2), new Explosion(-17, 3),
+    new Explosion(-14,   4), new Explosion(-15, 7),
+    new Explosion(-16,  10), new Explosion(-14, 11),
+    new Explosion(-12,  12), new Explosion(-9, 11), new Explosion(-6, 10), new Explosion(-3, 9), new Explosion(0, 8), new Explosion(3, 7), new Explosion(6, 6), new Explosion(9, 5),
+    new Explosion(12,    4), new Explosion(15, 3.5), new Explosion(18, 3), new Explosion(21, 2.5),
+    new Explosion(24,    2)
+    };
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// getV
@@ -192,7 +209,7 @@ class Spaceship extends Floater {
       translate(-pCompassX, -pCompassY); //////////
       rect(25, 245, 190, 80, 10);
       textAlign(CENTER);
-      textSize(30);
+      textSize(25);
       fill(255, 0, 0);
       text("GAME OVER", 120, 295);
     }
@@ -202,7 +219,7 @@ class Spaceship extends Floater {
   
   public void healthMinus() {
     if (healthPoints > 0.0)
-      healthPoints -= 20;
+      healthPoints -= 5; ///////////////////////////////////////////// DAMAGE
     else {
       healthPoints = 0;
       deathSpaceship = true;
@@ -219,7 +236,12 @@ class Spaceship extends Floater {
   }
   
   public void explosion() {
-    
+    translate((float)pX, (float)pY);
+    rotate((float)direct*PI);
+    for(int i = 0; i < Gone.length; i++)
+      Gone[i].show();
+    rotate(-(float)direct*PI);
+    translate(-(float)pX, -(float)pY);
   }
   
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// hyperspace
