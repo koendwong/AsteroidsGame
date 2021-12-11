@@ -2,19 +2,22 @@ Spaceship test;
 Star [] test2 = new Star[1000];
 ArrayList <Asteroid> block3 = new ArrayList <Asteroid> ();
 
-public boolean wPress, aPress, dPress, qPress, shiftPress, lazySteer;
+public boolean wPress, aPress, dPress, qPress, shiftPress, lazySteer, deathSpaceship;
 public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
+public PImage skull;
 
-///////////////////////////////////////////////////////////////////////////////////////////////// setup
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
   size(1500, 900);
+  skull = loadImage("deathSkull.png");
   
   AsteroidAmount = 40;
   wPress = false;
   aPress = false;
   dPress = false;
   lazySteer = false;
+  deathSpaceship = false;
   hyperspaceEffect = 0;
   hyperspaceCooldown = 0;
   
@@ -25,27 +28,33 @@ public void setup() {
     block3.add(i, new Asteroid());
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////// draw
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// draw
 
 public void draw() {
   background(0);
   
-  ////////////////////////////////////////// Star
+  //////////////////////////////////////////////////////////////////////////////////// Star
   for (int i = 0; i < test2.length; i++)
     test2[i].show();
   
-  ////////////////////////////////////////// Asteroid
+  //////////////////////////////////////////////////////////////////////////////////// Asteroid
   for (int i = 0; i < block3.size(); i++) {
     block3.get(i).turn();
     block3.get(i).move();
     block3.get(i).show();
-    if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40)
-      block3.remove(i);
+    //block3.get(i).getVelocity();
+    if (!deathSpaceship) {
+      if (dist(test.getPX(), test.getPY(), block3.get(i).getPX(), block3.get(i).getPY()) < 40) {
+        test.healthMinus();
+        block3.remove(i);
+      }
+    }
   }
   
-  ////////////////////////////////////////// Spaceship
-  if (wPress)
+  //////////////////////////////////////////////////////////////////////////////////// Spaceship
+  if (wPress) {
     test.accel(0.05);
+  }
   if (lazySteer) {
     test.mouseDirect();
   } else {
@@ -64,11 +73,13 @@ public void draw() {
   }
   test.turn();
   test.move();
-  test.show();
-  test.Thruster();
+  if (!deathSpaceship)
+    test.show();
+  else
+    test.explosion();
   test.displayCompass();
   
-  ////////////////////////////////////////// hyperspace effects
+  //////////////////////////////////////////////////////////////////////////////////// hyperspace effects
   if (hyperspaceCooldown > 0)
     hyperspaceCooldown--;
   if (hyperspaceEffect > 0)
@@ -78,7 +89,7 @@ public void draw() {
   rect(0, 0, width, height);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////// keyPressed
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// keyPressed
 
 public void keyPressed() {
   if (key == 'w' || key == 'W')
