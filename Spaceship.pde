@@ -184,22 +184,22 @@ class Spaceship extends Floater {
       fill(0, 200);
       rect(25, 245, 190, 80, 10);
       
-      //textFont(BankGothicBold);
+      textFont(BankGothic48);
       textAlign(LEFT);
-      textSize(15);
-      fill(255, 0, 255);
-      text((float)getV() + "", 35, 300);
-      textSize(10);
-      text("pixels per second", 35, 310);
-  
       if (lazySteer)
         fill(0, 255, 255);
       else
         fill(0, 128, 255);
-      textSize(15);
-      text((float)(getDirect()*180) + "", 35, 270);
-      textSize(10);
-      text("degrees", 35, 280);
+      textSize(12);
+      text((getDirect()*180) + "", 40, 270);
+      textSize(8);
+      text("DEGREES", 40, 280);
+      
+      textSize(12);
+      fill(255, 0, 255);
+      text(getV() + "", 40, 300);
+      textSize(8);
+      text("PIXELS PER SECOND", 40, 310);
     } ////////////////////////////////////////////////////////////////////////////////////
     else {
       stroke(255, 0, 0);
@@ -213,7 +213,7 @@ class Spaceship extends Floater {
       textAlign(CENTER);
       textSize(25);
       fill(255, 0, 0);
-      text("GAME OVER", 120, 290);
+      text("GAME OVER", 120, 292);
     }
   }
   
