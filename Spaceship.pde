@@ -184,10 +184,11 @@ class Spaceship extends Floater {
       fill(0, 200);
       rect(25, 245, 190, 80, 10);
       
+      //textFont(BankGothicBold);
       textAlign(LEFT);
       textSize(15);
       fill(255, 0, 255);
-      text(getV() + "", 35, 300);
+      text((float)getV() + "", 35, 300);
       textSize(10);
       text("pixels per second", 35, 310);
   
@@ -196,7 +197,7 @@ class Spaceship extends Floater {
       else
         fill(0, 128, 255);
       textSize(15);
-      text((getDirect()*180) + "", 35, 270);
+      text((float)(getDirect()*180) + "", 35, 270);
       textSize(10);
       text("degrees", 35, 280);
     } ////////////////////////////////////////////////////////////////////////////////////
@@ -208,10 +209,11 @@ class Spaceship extends Floater {
       image(skull, -60, -65);
       translate(-pCompassX, -pCompassY); //////////
       rect(25, 245, 190, 80, 10);
+      
       textAlign(CENTER);
       textSize(25);
       fill(255, 0, 0);
-      text("GAME OVER", 120, 295);
+      text("GAME OVER", 120, 290);
     }
   }
   
@@ -219,7 +221,7 @@ class Spaceship extends Floater {
   
   public void healthMinus() {
     if (healthPoints > 0.0)
-      healthPoints -= 5; ///////////////////////////////////////////// DAMAGE
+      healthPoints -= 20; ///////////////////////////////////////////// DAMAGE
     else {
       healthPoints = 0;
       deathSpaceship = true;
