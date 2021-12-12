@@ -5,12 +5,14 @@ ArrayList <Asteroid> block3 = new ArrayList <Asteroid> ();
 public boolean wPress, aPress, dPress, shiftPress, lazySteer, deathSpaceship;
 public int AsteroidAmount, hyperspaceEffect, hyperspaceCooldown;
 public PImage skull;
+public PFont BankGothic48;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// setup
 
 public void setup() {
   size(1500, 900);
   skull = loadImage("deathSkull.png");
+  BankGothic48 = loadFont("BankGothicMedium48.vlw");
   
   AsteroidAmount = 40;
   wPress = false;
