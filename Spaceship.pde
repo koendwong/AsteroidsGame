@@ -221,7 +221,7 @@ class Spaceship extends Floater {
   
   public void healthMinus() {
     if (healthPoints > 0.0)
-      healthPoints -= 20; ///////////////////////////////////////////// DAMAGE
+      healthPoints -= 5; ///////////////////////////////////////////// DAMAGE
     else {
       healthPoints = 0;
       deathSpaceship = true;
